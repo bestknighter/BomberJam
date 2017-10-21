@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	public MoveDirection ChosenDirection {
+		get { return m_ChosenDir; }
 		set { m_ChosenDir = value; }
 	}
 
