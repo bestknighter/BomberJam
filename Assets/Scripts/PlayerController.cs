@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 initialPosition;
 	public BoxCollider2D attackCollider;
 	public float attackColiderDistance;
+	public bool isStun = false; 
 
 	private MoveDirection mv;
 
@@ -39,50 +40,55 @@ public class PlayerController : MonoBehaviour {
 			// Se não, descobre se é possível fazer OptionalDirection
 				// Se sim, coloca em ChosenDirection
 				// Se não, coloca Nothing em ChosenDirection
+		if (!isStun) {
 
-		switch (playerInput.DesiredDirection) {
-		case MoveDirection.UP:
-			mv = MoveDirection.UP;
-			rb2d.velocity = new Vector2 (0f, moveSpeed);
-			attackCollider.offset = new Vector2 (0f, attackColiderDistance);
-			break;
-		case MoveDirection.DOWN:
-			mv = MoveDirection.DOWN;
-			rb2d.velocity = new Vector2(0f, -moveSpeed);
-			attackCollider.offset = new Vector2 (0f, -attackColiderDistance);
-			break;
-		case MoveDirection.LEFT:
-			mv = MoveDirection.LEFT;
-			rb2d.velocity = new Vector2(-moveSpeed, 0f);
-			attackCollider.offset = new Vector2 (-attackColiderDistance, 0f);
-			break;
-		case MoveDirection.RIGHT:
-			mv = MoveDirection.RIGHT;
-			rb2d.velocity = new Vector2(moveSpeed, 0f);
-			attackCollider.offset = new Vector2 (attackColiderDistance, 0f);
-			break;
-		case MoveDirection.NOTHING:
-			rb2d.velocity = new Vector2(0f, 0f);
-			break;
-		}
-
-		if (playerInput.BotaoA) {
-			//soco
-			if (null != colliding) {
-				if (colliding.tag == "Destrutivel") {
-					colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
-				} else if (colliding.tag == "Player") {
-//					colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
-				}
+			switch (playerInput.DesiredDirection) {
+			case MoveDirection.UP:
+				mv = MoveDirection.UP;
+				rb2d.velocity = new Vector2 (0f, moveSpeed);
+				attackCollider.offset = new Vector2 (0f, attackColiderDistance);
+				break;
+			case MoveDirection.DOWN:
+				mv = MoveDirection.DOWN;
+				rb2d.velocity = new Vector2 (0f, -moveSpeed);
+				attackCollider.offset = new Vector2 (0f, -attackColiderDistance);
+				break;
+			case MoveDirection.LEFT:
+				mv = MoveDirection.LEFT;
+				rb2d.velocity = new Vector2 (-moveSpeed, 0f);
+				attackCollider.offset = new Vector2 (-attackColiderDistance, 0f);
+				break;
+			case MoveDirection.RIGHT:
+				mv = MoveDirection.RIGHT;
+				rb2d.velocity = new Vector2 (moveSpeed, 0f);
+				attackCollider.offset = new Vector2 (attackColiderDistance, 0f);
+				break;
+			case MoveDirection.NOTHING:
+				rb2d.velocity = new Vector2 (0f, 0f);
+				break;
 			}
 
-		} else if (playerInput.BotaoB) {
-			//chute
-			if (null != colliding) {
-				if (colliding.tag == "Player") {
-					colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
-				} else if (colliding.tag == "Arcade") {
-					colliding.GetComponent<Arcade> ().StartMoving (mv);
+		
+			if (playerInput.BotaoA) {
+				//soco
+				if (null != colliding) {
+					if (colliding.tag == "Destrutivel") {
+						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
+					} else if (colliding.tag == "Player") {
+						colliding.GetComponent<Stun> ().StunHit (attackDamage);
+					}
+				}
+
+			} else if (playerInput.BotaoB) {
+				//chute
+				if (null != colliding) {
+					if (colliding.tag == "Player") {
+						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
+					} else if (colliding.tag == "Arcade") {
+						colliding.GetComponent<Arcade> ().StartMoving (mv);
+					} else if (colliding.tag == "Destrutivel") {
+						colliding.GetComponent<Arcade> ().StartMoving (mv);
+					}
 				}
 			}
 		}

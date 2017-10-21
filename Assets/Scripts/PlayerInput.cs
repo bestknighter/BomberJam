@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour {
 
 	public MoveDirection DesiredDirection {
 		get { return m_Dir1; }
+		set { m_Dir1 = value; }
 	}
 
 	public MoveDirection OptionalDirection {
@@ -39,6 +40,7 @@ public class PlayerInput : MonoBehaviour {
 		m_BtnA = false;
 		m_BtnB = false;
 	}
+
 
 	void FixedUpdate () {
 //		m_BtnA = Input.GetAxis ("BtnAP" + PlayerNumber) > 0.0f;

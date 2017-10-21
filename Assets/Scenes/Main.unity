@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 258515463}
   - component: {fileID: 258515469}
   - component: {fileID: 258515470}
+  - component: {fileID: 258515471}
   m_Layer: 0
   m_Name: Jogador2PH
   m_TagString: Player
@@ -224,6 +225,7 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   attackCollider: {fileID: 258515469}
   attackColiderDistance: 0.6
+  isStun: 0
   colliding: {fileID: 0}
   attackDamage: 10
 --- !u!114 &258515464
@@ -369,6 +371,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 100
   isPlayer: 1
+--- !u!114 &258515471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 258515462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8166743635ed2b478530b8293d5799a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLeft: 5
 --- !u!1 &378513762
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +398,7 @@ GameObject:
   - component: {fileID: 378513763}
   - component: {fileID: 378513765}
   - component: {fileID: 378513770}
+  - component: {fileID: 378513771}
   m_Layer: 0
   m_Name: Jogador1PH
   m_TagString: Player
@@ -408,6 +423,7 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   attackCollider: {fileID: 378513765}
   attackColiderDistance: 0.6
+  isStun: 0
   colliding: {fileID: 0}
   attackDamage: 10
 --- !u!114 &378513764
@@ -553,6 +569,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 100
   isPlayer: 1
+--- !u!114 &378513771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378513762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8166743635ed2b478530b8293d5799a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLeft: 5
 --- !u!1 &546845822
 GameObject:
   m_ObjectHideFlags: 0
