@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour {
 		initialPosition = transform.position;
 	}
 
+	void OnDisable() {
+		OnEnable ();
+	}
+
 	void OnEnable() {
 		transform.position = initialPosition;
 	}
