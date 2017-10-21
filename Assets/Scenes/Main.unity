@@ -1044,6 +1044,8 @@ MonoBehaviour:
   pr2: {fileID: 546845826}
   pc1: {fileID: 378513763}
   pc2: {fileID: 258515463}
+  ftm: {fileID: 2036329709}
+  start: {fileID: 1770469892}
 --- !u!1 &1770469887
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,30 +13,57 @@ public class GameController : MonoBehaviour {
 	public PlayerController pc1;
 	public PlayerController pc2;
 
+	public FakeTileMap ftm;
+
+	public Animator start;
+
+	private static GameController instance;
+	private bool started;
+
 	// Use this for initialization
 	void Start () {
-		
+		if (null == instance) {
+			instance = this;
+		}
+		started = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (pr1.Ready && pr2.Ready) {
-			c.gameObject.SetActive (false);
-			pc1.enabled = true;
-			pc2.enabled = true;
+			if (!started) {
+				start.SetBool ("StartFight", true);
+				started = true;
+			}
 			if (Input.GetKeyDown (KeyCode.Escape)) {
-				c.gameObject.SetActive (true);
-				pc1.enabled = false;
-				pc2.enabled = false;
-				pr1.Ready = false;
-				pr2.Ready = false;
+				ShowStartScreen ();
+				started = false;
 			}
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
-			#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false;
-			#else
-			Application.Quit ();
-			#endif
+			QuitGame ();
 		}
+	}
+
+	public static void HideStartScreen() {
+		instance.c.gameObject.SetActive (false);
+		instance.pc1.enabled = true;
+		instance.pc2.enabled = true;
+	}
+
+	public static void ShowStartScreen() {
+		instance.c.gameObject.SetActive (true);
+		instance.pc1.enabled = false;
+		instance.pc2.enabled = false;
+		instance.pr1.Ready = false;
+		instance.pr2.Ready = false;
+		instance.ftm.Start();
+	}
+
+	public void QuitGame() {
+		#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+		#else
+		Application.Quit ();
+		#endif
 	}
 }

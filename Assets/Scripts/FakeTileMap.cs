@@ -45,7 +45,7 @@ public class FakeTileMap : MonoBehaviour {
 	}*/
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		if (numObstaculos > numMaxObstaculos) {
 			Debug.LogError ("Proibido numObstaculos ser maior que numMaxObstaculos");
 		}
