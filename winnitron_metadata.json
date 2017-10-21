@@ -1,8 +1,0 @@
-{
-    "title":"BomberJam", 
-    "min_players":"2", 
-    "max_players":"2", 
-    "executable":"BomberJam.exe", 
-    "legacy_controls":"false", 
-    "image_url":"BomberJam.png"
-  }
