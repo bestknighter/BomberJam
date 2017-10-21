@@ -1509,6 +1509,7 @@ GameObject:
   - component: {fileID: 2036329715}
   - component: {fileID: 2036329714}
   - component: {fileID: 2036329713}
+  - component: {fileID: 2036329716}
   m_Layer: 0
   m_Name: Over
   m_TagString: Untagged
@@ -1530,9 +1531,11 @@ MonoBehaviour:
   obstaculo: {fileID: 1387795271383578, guid: 62339be9e8514624a8cc9e08ebcdb06f, type: 2}
   obstaculoDestrutivel: {fileID: 1347463568031848, guid: 0f904ffc5f7b9e44fb22a3fda450075d,
     type: 2}
+  arcade: {fileID: 1474274824782316, guid: 62e40f0ff7b1adf41ac9d9baf92c812a, type: 2}
   numObstaculos: 10
   numObstaculosDestrutivel: 10
   numMaxObstaculos: 49
+  numArcades: 3
   x_pixels: 1080
   y_pixels: 1080
   num_horizontalsquares: 9
@@ -1698,6 +1701,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15, y: 45}
   m_EdgeRadius: 0
+--- !u!95 &2036329716
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036329708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f6d64f8fb5b3d94fbe459c5ec8a81bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2142283783
 GameObject:
   m_ObjectHideFlags: 0

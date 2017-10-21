@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 50567648298921304}
   - component: {fileID: 61711894615656168}
   - component: {fileID: 114745691257368082}
+  - component: {fileID: 114252716512057250}
   m_Layer: 0
   m_Name: ArcadePH
   m_TagString: Arcade
@@ -79,11 +80,11 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474274824782316}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 102.27
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -117,6 +118,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &114252716512057250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474274824782316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad4b8a84357d17488cf44f57ddc8f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beingkicked: 0
+  limits: 3.5
+  speed: 0.3
+  rb2d: {fileID: 50567648298921304}
 --- !u!114 &114745691257368082
 MonoBehaviour:
   m_ObjectHideFlags: 1
