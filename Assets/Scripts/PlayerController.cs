@@ -7,13 +7,18 @@ public class PlayerController : MonoBehaviour {
 	public PlayerInput playerInput;
 	public Rigidbody2D rb2d;
 	public float moveSpeed = 2f;
+	public Vector3 initialPosition;
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		initialPosition = transform.position;
 	}
-	
+
+	void OnEnable() {
+		transform.position = initialPosition;
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 
