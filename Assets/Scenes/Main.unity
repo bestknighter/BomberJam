@@ -1087,7 +1087,10 @@ MonoBehaviour:
   pc2: {fileID: 258515463}
   ftm: {fileID: 2036329709}
   start: {fileID: 1770469892}
+<<<<<<< HEAD
   inGameOverlay: {fileID: 2036329710}
+=======
+>>>>>>> Termina animacoes do inicio
 --- !u!1 &1770469887
 GameObject:
   m_ObjectHideFlags: 0
