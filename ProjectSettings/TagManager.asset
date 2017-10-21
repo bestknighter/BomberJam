@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mapa
   - Destrutivel
+  - Arcade
   layers:
   - Default
   - TransparentFX
