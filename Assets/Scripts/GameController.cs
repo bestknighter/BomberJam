@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour {
 
 	public Animator start;
 
+	public SpriteRenderer inGameOverlay;
+
 	private static GameController instance;
 	private bool started;
 
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour {
 		instance.c.gameObject.SetActive (false);
 		instance.pc1.enabled = true;
 		instance.pc2.enabled = true;
+		instance.inGameOverlay.enabled = true;
 	}
 
 	public static void ShowStartScreen() {
@@ -57,6 +60,7 @@ public class GameController : MonoBehaviour {
 		instance.pr1.Ready = false;
 		instance.pr2.Ready = false;
 		instance.ftm.Start();
+		instance.inGameOverlay.enabled = false;
 	}
 
 	public void QuitGame() {
