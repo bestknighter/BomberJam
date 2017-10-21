@@ -6,9 +6,11 @@ public class FakeTileMap : MonoBehaviour {
 
 	public GameObject obstaculo;
 	public GameObject obstaculoDestrutivel;
+	public GameObject arcade;
 	public int numObstaculos;
 	public int numObstaculosDestrutivel;
 	public int numMaxObstaculos;
+	public int numArcades;
 
 	public int x_pixels;
 	public int y_pixels;
@@ -22,6 +24,8 @@ public class FakeTileMap : MonoBehaviour {
 	private int square_height;
 
 	private int[] indexes;
+	private int[] fixedIndexes = { 10, 28, 46, 65, 31, 49, 61, 43, 34, 11, 14, 16 };
+
 
 	/*
 	Vector2 SortSquare()
@@ -50,34 +54,45 @@ public class FakeTileMap : MonoBehaviour {
 			Debug.LogError ("Proibido numObstaculos ser maior que numMaxObstaculos");
 		}
 		indexes = new int[numMaxObstaculos];
-		for (int i = 0; i < numMaxObstaculos; i++) {
+		for (int i = 0; i < indexes.Length; i++) {
 			indexes [i] = i;
 		}
 			
-		for (int i = 0; i < numMaxObstaculos; i++) {
+		for (int i = 0; i < indexes.Length; i++) {
 			int tmp = indexes [i];
 			int j = Random.Range (i, numMaxObstaculos);
 			indexes [i] = indexes [j];
 			indexes [j] = tmp;
 		}
 
-		int[] fixedIdexes = { 10, 28, 46, 65, 69, 70, 61, 43, 34, 11, 14, 16 };
-
-		for (int i = 0; i < fixedIdexes.Length; i++) {
-			int x = fixedIdexes[i] % (num_verticalsquares);
-			int y = fixedIdexes[i] / (num_verticalsquares);
+		for (int i = 0; i < fixedIndexes.Length; i++) {
+			int x = fixedIndexes[i] % (num_verticalsquares);
+			int y = fixedIndexes[i] / (num_verticalsquares);
 			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
 			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 			worldPos.z = -2;
 			GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity);
 		}
 
+		SpawnMovable (obstaculoDestrutivel, 0, numObstaculosDestrutivel);
+		SpawnMovable (arcade, numObstaculosDestrutivel, numObstaculosDestrutivel+numArcades);
+		Debug.Log ("indexes lenght= " + indexes.Length);
+			
+			
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	void SpawnMovable(GameObject go, int begin, int end){
 		int skip = 0; // flag para pular o spawn do obstáculo
-		for (int i = 0; i < numObstaculosDestrutivel; i++) {
+		for (int i = begin; i < end; i++) {
 			int x = indexes[i] % (num_verticalsquares-2)+1;
 			int y = indexes[i] / (num_verticalsquares-2)+1;
-			for (int j = 0; j < fixedIdexes.Length; j++) {
-				if ((x*9) + y == fixedIdexes [j]) {
+			for (int j = 0; j < fixedIndexes.Length; j++) {
+				if (  (x*9+y) == fixedIndexes [j] || indexes[i] == fixedIndexes[j]) {
 					skip = 1;
 				}
 			}
@@ -86,18 +101,12 @@ public class FakeTileMap : MonoBehaviour {
 				Vector2 spawnPos = new Vector2 (x * square_width + xOffset + square_width / 2, y * square_height + square_height / 2);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint (new Vector3 (spawnPos.x, spawnPos.y, 0f));
 				worldPos.z = -2;
-				GameObject.Instantiate (obstaculoDestrutivel, worldPos, Quaternion.identity);
+				GameObject.Instantiate (go, worldPos, Quaternion.identity);
 			} else {
-				//skip = 0;
-				//i--;
+				skip = 0;
 			}
 
-		}
-			
+		}		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
