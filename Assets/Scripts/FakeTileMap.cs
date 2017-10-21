@@ -53,7 +53,7 @@ public class FakeTileMap : MonoBehaviour {
 		for (int i = 0; i < numMaxObstaculos; i++) {
 			indexes [i] = i;
 		}
-
+			
 		for (int i = 0; i < numMaxObstaculos; i++) {
 			int tmp = indexes [i];
 			int j = Random.Range (i, numMaxObstaculos);
@@ -61,21 +61,37 @@ public class FakeTileMap : MonoBehaviour {
 			indexes [j] = tmp;
 		}
 
-		for (int i = 0; i < numObstaculos; i++) {
-			int x = indexes[i] % (num_verticalsquares-2)+1;
-			int y = indexes[i] / (num_verticalsquares-2)+1;
+		int[] fixedIdexes = { 10, 28, 46, 65, 69, 70, 61, 43, 34, 11, 14, 16 };
+
+		for (int i = 0; i < fixedIdexes.Length; i++) {
+			int x = fixedIdexes[i] % (num_verticalsquares);
+			int y = fixedIdexes[i] / (num_verticalsquares);
 			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
 			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 			worldPos.z = -2;
 			GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity);
 		}
+
+		int skip = 0; // flag para pular o spawn do obstáculo
 		for (int i = 0; i < numObstaculosDestrutivel; i++) {
 			int x = indexes[i] % (num_verticalsquares-2)+1;
 			int y = indexes[i] / (num_verticalsquares-2)+1;
-			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
-			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
-			worldPos.z = -2;
-			GameObject.Instantiate (obstaculoDestrutivel, worldPos, Quaternion.identity);
+			for (int j = 0; j < fixedIdexes.Length; j++) {
+				if ((x*9) + y == fixedIdexes [j]) {
+					skip = 1;
+				}
+			}
+
+			if (skip == 0) {
+				Vector2 spawnPos = new Vector2 (x * square_width + xOffset + square_width / 2, y * square_height + square_height / 2);
+				Vector3 worldPos = Camera.main.ScreenToWorldPoint (new Vector3 (spawnPos.x, spawnPos.y, 0f));
+				worldPos.z = -2;
+				GameObject.Instantiate (obstaculoDestrutivel, worldPos, Quaternion.identity);
+			} else {
+				//skip = 0;
+				//i--;
+			}
+
 		}
 			
 	}
