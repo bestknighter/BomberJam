@@ -5,7 +5,9 @@ using UnityEngine;
 public class FakeTileMap : MonoBehaviour {
 
 	public GameObject obstaculo;
+	public GameObject obstaculoDestrutivel;
 	public int numObstaculos;
+	public int numObstaculosDestrutivel;
 	public int numMaxObstaculos;
 
 	public int x_pixels;
@@ -66,6 +68,14 @@ public class FakeTileMap : MonoBehaviour {
 			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 			worldPos.z = -2;
 			GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity);
+		}
+		for (int i = 0; i < numObstaculosDestrutivel; i++) {
+			int x = indexes[i] % (num_verticalsquares-2)+1;
+			int y = indexes[i] / (num_verticalsquares-2)+1;
+			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
+			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
+			worldPos.z = -2;
+			GameObject.Instantiate (obstaculoDestrutivel, worldPos, Quaternion.identity);
 		}
 			
 	}

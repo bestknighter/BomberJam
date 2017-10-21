@@ -41,8 +41,15 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		m_BtnA = Input.GetAxis ("BtnAP" + PlayerNumber) > 0.0f;
-		m_BtnB = Input.GetAxis ("BtnBP" + PlayerNumber) > 0.0f;
+//		m_BtnA = Input.GetAxis ("BtnAP" + PlayerNumber) > 0.0f;
+//		m_BtnB = Input.GetAxis ("BtnBP" + PlayerNumber) > 0.0f;
+		if (1 == PlayerNumber) {
+			m_BtnA = Input.GetKeyDown ("k");
+			m_BtnB = Input.GetKeyDown ("l");
+		} else if (2 == PlayerNumber) {
+			m_BtnA = Input.GetKeyDown ("f");
+			m_BtnB = Input.GetKeyDown ("g");
+		}
 
 		MoveDirection opt1;
 		MoveDirection opt2;
