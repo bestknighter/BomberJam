@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+	public Vector3 p1InitialPos, p2InitialPos;
+	public GameObject player1, player2;
+
 	public Canvas c;
 
 	public PlayerReadier pr1;
@@ -22,12 +25,21 @@ public class GameController : MonoBehaviour {
 	private static GameController instance;
 	private bool started;
 
+	public float cooldownBetwweenGames;
+	private float timeWhenGameEnded;
+
+	public GameObject[] cadeiras;
+	public GameObject[] flippers;
+
+
 	// Use this for initialization
 	void Start () {
 		if (null == instance) {
 			instance = this;
 		}
 		started = false;
+		p1InitialPos= new Vector3(-4.48f, -4.48f, -1.15f);
+		p2InitialPos= new Vector3(4.48f, 4.44f, -1.05f);
 	}
 	
 	// Update is called once per frame
@@ -43,6 +55,8 @@ public class GameController : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
 			QuitGame ();
+		} else if (timeWhenGameEnded + cooldownBetwweenGames < Time.time) {
+			
 		}
 	}
 
@@ -69,5 +83,12 @@ public class GameController : MonoBehaviour {
 		#else
 		Application.Quit ();
 		#endif
+	}
+
+	public void GameEnded (int playerLost){
+		timeWhenGameEnded = Time.time;
+		player1.transform.position = p1InitialPos;
+		player2.transform.position = p2InitialPos;
+
 	}
 }
