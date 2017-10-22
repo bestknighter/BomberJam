@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 1221197231}
   m_Layer: 0
   m_Name: PersistGO
-  m_TagString: Untagged
+  m_TagString: Placar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

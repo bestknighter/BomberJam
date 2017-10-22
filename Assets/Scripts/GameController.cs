@@ -100,5 +100,10 @@ public class GameController : MonoBehaviour {
 		waitingRestart = true;
 		player1.SetActive (false);
 		player2.SetActive (false);
+		if (1 == playerLost) {
+			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P2Victory ();
+		} else {
+			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P1Victory ();
+		}
 	}
 }
