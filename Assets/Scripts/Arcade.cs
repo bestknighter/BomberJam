@@ -10,6 +10,8 @@ public class Arcade : MonoBehaviour {
 	public float speed;
 	public Rigidbody2D rb2d;
 
+	public bool naVddEhUmBanco;
+
 	public int damageToPlayer;
 	// Use this for initialization
 	void Start () {
@@ -60,7 +62,7 @@ public class Arcade : MonoBehaviour {
 		}
 	}
 	public void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Player" && beingkicked) {
+		if (coll.gameObject.tag == "Player" && beingkicked && !naVddEhUmBanco) {
 			coll.gameObject.GetComponent<Vida> ().TakeDamage (damageToPlayer);
 		} else if (beingkicked) {
 			beingkicked = false;

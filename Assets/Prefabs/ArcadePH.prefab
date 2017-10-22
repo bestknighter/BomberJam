@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 61711894615656168}
   - component: {fileID: 114745691257368082}
   - component: {fileID: 114252716512057250}
+  - component: {fileID: 114889699417137086}
   m_Layer: 0
   m_Name: ArcadePH
   m_TagString: Arcade
@@ -133,6 +134,7 @@ MonoBehaviour:
   limits: 3.5
   speed: 0.3
   rb2d: {fileID: 50567648298921304}
+  naVddEhUmBanco: 0
   damageToPlayer: 500
 --- !u!114 &114745691257368082
 MonoBehaviour:
@@ -147,6 +149,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 40
   isPlayer: 0
+--- !u!114 &114889699417137086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474274824782316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e993e9a304d5d4894f7bb31048c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212275382620288614
 SpriteRenderer:
   m_ObjectHideFlags: 1
