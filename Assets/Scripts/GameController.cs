@@ -41,8 +41,8 @@ public class GameController : MonoBehaviour {
 			instance = this;
 		}
 		started = false;
-		p1InitialPos= new Vector3(-4.48f, -4.48f, -1.15f);
-		p2InitialPos= new Vector3(4.48f, 4.44f, -1.05f);
+		p1InitialPos= new Vector3(4.48f, 4.48f, -1.15f);
+		p2InitialPos= new Vector3(-4.48f, -4.44f, -1.05f);
 	}
 	
 	// Update is called once per frame
