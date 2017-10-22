@@ -107,10 +107,12 @@ public class PlayerController : MonoBehaviour {
 			} else if (playerInput.BotaoB) {
 				//chute
 				if (null != colliding) {
+					((AudioSource) gameObject.GetComponent<AudioSource> ()).Play();
 					if (colliding.tag == "Player") {
 						colliding.GetComponent<PlayerController>().GetKicked(mv);
 					} else if (colliding.tag == "Arcade") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
+
 					} else if (colliding.tag == "Destrutivel") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
 					}

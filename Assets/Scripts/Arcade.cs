@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-
+[RequireComponent(typeof(AudioSource))]
 public class Arcade : MonoBehaviour {
 	public bool beingkicked;
 	private MoveDirection moveDirection;

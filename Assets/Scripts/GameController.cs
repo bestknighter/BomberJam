@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
 		if (pr1.Ready && pr2.Ready) {
 			if (!started) {
 				start.SetBool ("StartFight", true);
+
 				started = true;
 			}
 			if (Input.GetKeyDown (KeyCode.Escape)) {
