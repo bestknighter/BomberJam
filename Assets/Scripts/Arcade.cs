@@ -60,8 +60,10 @@ public class Arcade : MonoBehaviour {
 		}
 	}
 	public void OnCollisionEnter2D(Collision2D coll){
-		if(coll.gameObject.tag == "Player" && beingkicked){
+		if (coll.gameObject.tag == "Player" && beingkicked) {
 			coll.gameObject.GetComponent<Vida> ().TakeDamage (damageToPlayer);
+		} else if (beingkicked) {
+			beingkicked = false;
 		}
 	}
 }

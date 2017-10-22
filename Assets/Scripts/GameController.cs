@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour {
 
 	public float cooldownBetwweenGames;
 	private float timeWhenGameEnded;
+	[SerializeField]
 	private bool waitingRestart = false;
 
 	public FakeTileMap fakeTM;
@@ -57,7 +58,8 @@ public class GameController : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
 			QuitGame ();
-		} else if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
+		}
+		if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
 			waitingRestart = false;
 			player1.SetActive (true);
 			player2.SetActive (true);

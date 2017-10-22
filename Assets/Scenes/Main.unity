@@ -1175,6 +1175,7 @@ MonoBehaviour:
   ftm: {fileID: 2036329709}
   start: {fileID: 1770469892}
   cooldownBetwweenGames: 2
+  waitingRestart: 0
   fakeTM: {fileID: 2036329709}
 --- !u!1 &1770469887
 GameObject:
