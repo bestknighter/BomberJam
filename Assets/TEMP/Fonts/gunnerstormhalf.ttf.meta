@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a05e5cc818acfb14f8b9832848fa41ba
+timeCreated: 1508610675
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gunner Storm Halftone
+  fontNames:
+  - Gunner Storm Halftone
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject colliding;
 
+	public Animator anim;
+	public GameObject filho;
+
 	[SerializeField]
 	private int attackDamage;
 
@@ -72,40 +75,57 @@ public class PlayerController : MonoBehaviour {
 				mv = MoveDirection.UP;
 				rb2d.velocity = new Vector2 (0f, moveSpeed);
 				attackCollider.offset = new Vector2 (0f, attackColiderDistance);
+				anim.SetBool ("Up", true);
+				anim.SetBool ("Down", false);
+				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.DOWN:
 				mv = MoveDirection.DOWN;
 				rb2d.velocity = new Vector2 (0f, -moveSpeed);
 				attackCollider.offset = new Vector2 (0f, -attackColiderDistance);
+				anim.SetBool ("Up", false);
+				anim.SetBool ("Down", true);
+				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.LEFT:
 				mv = MoveDirection.LEFT;
 				rb2d.velocity = new Vector2 (-moveSpeed, 0f);
 				attackCollider.offset = new Vector2 (-attackColiderDistance, 0f);
+				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.RIGHT:
 				mv = MoveDirection.RIGHT;
 				rb2d.velocity = new Vector2 (moveSpeed, 0f);
 				attackCollider.offset = new Vector2 (attackColiderDistance, 0f);
+				filho.transform.localScale.Scale(new Vector3(-1, 0f, 0f));
+//				filho.transform.
+				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.NOTHING:
 				rb2d.velocity = new Vector2 (0f, 0f);
+				anim.SetBool ("Up", false);
+				anim.SetBool ("Down", false);
+				anim.SetBool ("Walk", false);
+//				anim.SetTrigger ("ForceIdle");
 				break;
 			}
 
 		
 			if (playerInput.BotaoA) {
 				//soco
+				anim.SetTrigger("Punch");
 				if (null != colliding) {
 					if (colliding.tag == "Destrutivel") {
 						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
 					} else if (colliding.tag == "Player") {
 						colliding.GetComponent<Stun> ().StunHit (attackDamage);
+						colliding.GetComponent<PlayerController> ().anim.SetTrigger ("Hit");
 					}
 				}
 
 			} else if (playerInput.BotaoB) {
 				//chute
+				anim.SetTrigger("Kick");
 				if (null != colliding) {
 					((AudioSource) gameObject.GetComponent<AudioSource> ()).Play();
 					if (colliding.tag == "Player") {
