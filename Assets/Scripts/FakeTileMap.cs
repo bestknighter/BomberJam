@@ -24,7 +24,7 @@ public class FakeTileMap : MonoBehaviour {
 	private int square_height;
 
 	private int[] indexes;
-	private int[] fixedIndexes = { 10, 28, 46, 65, 31, 49, 61, 43, 34, 11, 14, 16 };
+	private int[] fixedIndexes = { 66,23,19,55,37,25,61,43,21,68,40 };
 
 	public List<GameObject> cadeiras;
 	public List<GameObject> flippers;

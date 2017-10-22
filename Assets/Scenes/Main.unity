@@ -2379,7 +2379,7 @@ MonoBehaviour:
     type: 2}
   arcade: {fileID: 1474274824782316, guid: 62e40f0ff7b1adf41ac9d9baf92c812a, type: 2}
   numObstaculos: 10
-  numObstaculosDestrutivel: 10
+  numObstaculosDestrutivel: 18
   numMaxObstaculos: 49
   numArcades: 3
   x_pixels: 1080
