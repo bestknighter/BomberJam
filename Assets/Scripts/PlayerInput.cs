@@ -52,11 +52,11 @@ public class PlayerInput : MonoBehaviour {
 //		m_BtnA = Input.GetAxis ("BtnAP" + PlayerNumber) > 0.0f;
 //		m_BtnB = Input.GetAxis ("BtnBP" + PlayerNumber) > 0.0f;
 		if (1 == PlayerNumber) {
-			m_BtnA = Input.GetKeyDown ("k");
-			m_BtnB = Input.GetKeyDown ("l");
+			m_BtnA = Input.GetKeyDown ("k") || Input.GetKeyDown( "joystick 1 button 0" );
+			m_BtnB = Input.GetKeyDown ("l") || Input.GetKeyDown( "joystick 1 button 1" );
 		} else if (2 == PlayerNumber) {
-			m_BtnA = Input.GetKeyDown ("f");
-			m_BtnB = Input.GetKeyDown ("g");
+			m_BtnA = Input.GetKeyDown ("f") || Input.GetKeyDown( "joystick 2 button 0" );
+			m_BtnB = Input.GetKeyDown ("g") || Input.GetKeyDown( "joystick 2 button 1" );
 		}
 
 		MoveDirection opt1;

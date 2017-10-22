@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour {
                 }
                 else
                 {
-                    temp.clip = aClip[MISS];
+//                    temp.clip = aClip[MISS];
                     temp.Play();
 
                 }
@@ -186,12 +186,12 @@ public class PlayerController : MonoBehaviour {
                 }
                 else
                 {
-                    if (!temp.isPlaying || temp.clip.name != aClip[MISS].name)
+/*                    if (!temp.isPlaying || temp.clip.name != aClip[MISS].name)
                     {
                         temp.clip = aClip[MISS];
                         temp.Play();
                     }
-                }
+ */               }
 			}
 		}
 	}
