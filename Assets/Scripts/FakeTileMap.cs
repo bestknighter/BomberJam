@@ -26,6 +26,26 @@ public class FakeTileMap : MonoBehaviour {
 	private int[] indexes;
 	private int[] fixedIndexes = { 10, 28, 46, 65, 31, 49, 61, 43, 34, 11, 14, 16 };
 
+	public List<GameObject> cadeiras;
+	public List<GameObject> flippers;
+	public List<GameObject> colunas;
+
+	public void Restart(){
+		for (int i = 0; i < cadeiras.Count; i++) {
+			GameObject.Destroy (cadeiras [i]);
+		}
+		for (int i = 0; i < flippers.Count; i++) {
+			GameObject.Destroy (flippers [i]);
+		}
+		for (int i = 0; i < colunas.Count; i++) {
+			GameObject.Destroy (colunas [i]);
+		}
+		cadeiras.Clear();
+		flippers.Clear();
+		colunas.Clear ();
+
+		Start ();
+	}
 
 	/*
 	Vector2 SortSquare()
@@ -71,11 +91,11 @@ public class FakeTileMap : MonoBehaviour {
 			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
 			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 			worldPos.z = -2;
-			GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity);
+			colunas.Add(GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity) );
 		}
 
-		SpawnMovable (obstaculoDestrutivel, 0, numObstaculosDestrutivel);
-		SpawnMovable (arcade, numObstaculosDestrutivel, numObstaculosDestrutivel+numArcades);
+		SpawnMovable (obstaculoDestrutivel, 0, numObstaculosDestrutivel, cadeiras);
+		SpawnMovable (arcade, numObstaculosDestrutivel, numObstaculosDestrutivel+numArcades, flippers);
 		Debug.Log ("indexes lenght= " + indexes.Length);
 			
 			
@@ -86,7 +106,7 @@ public class FakeTileMap : MonoBehaviour {
 		
 	}
 
-	void SpawnMovable(GameObject go, int begin, int end){
+	void SpawnMovable(GameObject go, int begin, int end, List<GameObject> list){
 		int skip = 0; // flag para pular o spawn do obstáculo
 		for (int i = begin; i < end; i++) {
 			int x = indexes[i] % (num_verticalsquares-2)+1;
@@ -101,7 +121,7 @@ public class FakeTileMap : MonoBehaviour {
 				Vector2 spawnPos = new Vector2 (x * square_width + xOffset + square_width / 2, y * square_height + square_height / 2);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint (new Vector3 (spawnPos.x, spawnPos.y, 0f));
 				worldPos.z = -2;
-				GameObject.Instantiate (go, worldPos, Quaternion.identity);
+				list.Add( GameObject.Instantiate (go, worldPos, Quaternion.identity) );
 			} else {
 				skip = 0;
 			}

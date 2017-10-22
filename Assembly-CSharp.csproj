@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\FakeTileMap.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\MoveDirection.cs" />
+     <Compile Include="Assets\Scripts\Placar.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\PlayerReadier.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -28,9 +29,7 @@ public class GameController : MonoBehaviour {
 	public float cooldownBetwweenGames;
 	private float timeWhenGameEnded;
 
-	public GameObject[] cadeiras;
-	public GameObject[] flippers;
-
+	public FakeTileMap fakeTM;
 
 	// Use this for initialization
 	void Start () {
@@ -56,7 +55,7 @@ public class GameController : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
 			QuitGame ();
 		} else if (timeWhenGameEnded + cooldownBetwweenGames < Time.time) {
-			
+//			SceneManager.LoadScene (0);
 		}
 	}
 
