@@ -130,12 +130,7 @@ public class PlayerController : MonoBehaviour {
                 if (!temp.isPlaying)
                 {
                     temp.clip = aClip[WALK];
-                    Debug.Log(temp.clip.name);
                     temp.Play();
-                }
-                else
-                {
-                    Debug.Log("Camla fi, ta tocando a ultima");
                 }
             }else if(!anim.GetBool("Walk") && temp.isPlaying && temp.clip.name == aClip[WALK].name)
             {
@@ -147,13 +142,11 @@ public class PlayerController : MonoBehaviour {
 				//soco
 				anim.SetTrigger("Punch");
 				if (null != colliding) {
-                    if (!temp.isPlaying || temp.clip.name != aClip[PUNCH].name)
-                    {
-                        temp.clip = aClip[PUNCH];
-                        temp.Play();
-                    }
+                    temp.clip = aClip[PUNCH];
+                    temp.Play();
                     if (colliding.tag == "Destrutivel") {
-						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
+                        Debug.Log(colliding.GetComponent<Vida>().TakeDamage(attackDamage));
+                        
 					} else if (colliding.tag == "Player") {
 						colliding.GetComponent<Stun> ().StunHit (attackDamage);
 						colliding.GetComponent<PlayerController> ().anim.SetTrigger ("Hit");
@@ -161,7 +154,7 @@ public class PlayerController : MonoBehaviour {
                 }
                 else
                 {
-//                    temp.clip = aClip[MISS];
+                    temp.clip = aClip[MISS];
                     temp.Play();
 
                 }
@@ -170,13 +163,11 @@ public class PlayerController : MonoBehaviour {
 				//chute
 				anim.SetTrigger("Kick");
 				if (null != colliding) {
-                    if (!temp.isPlaying || temp.clip.name != aClip[KICK].name)
-                    {
-                        temp.clip = aClip[KICK];
-                        temp.Play();
-                    }
+                    temp.clip = aClip[KICK];
+                    temp.Play();
                     if (colliding.tag == "Player") {
-						colliding.GetComponent<PlayerController>().GetKicked(mv);
+                        Debug.Log(colliding.GetComponent<Vida>().TakeDamage(500));
+                        colliding.GetComponent<PlayerController>().GetKicked(mv);
                         colliding.GetComponent<PlayerController>().anim.SetTrigger("Hit");
                     } else if (colliding.tag == "Arcade") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
@@ -186,12 +177,12 @@ public class PlayerController : MonoBehaviour {
                 }
                 else
                 {
-/*                    if (!temp.isPlaying || temp.clip.name != aClip[MISS].name)
+                    if (!temp.isPlaying || temp.clip.name != aClip[MISS].name)
                     {
                         temp.clip = aClip[MISS];
                         temp.Play();
                     }
- */               }
+                }
 			}
 		}
 	}
@@ -204,7 +195,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void GetKicked(MoveDirection d){
-		beingkicked = true;
+        Debug.Log(gameObject.GetInstanceID() + ": fui chutado ");
+        
+        beingkicked = true;
 		timestampKick = Time.time;
 		kickDirection = d;
 	}

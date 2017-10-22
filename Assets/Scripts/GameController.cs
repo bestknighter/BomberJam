@@ -28,12 +28,16 @@ public class GameController : MonoBehaviour {
 	private static GameController instance;
 	private bool started;
 
+    [SerializeField]
 	public float cooldownBetwweenGames;
+
 	private float timeWhenGameEnded;
 	[SerializeField]
 	private bool waitingRestart = false;
 
 	public FakeTileMap fakeTM;
+    private float timeSinceGameEnded;
+    private int playerLost;
 
 	// Use this for initialization
 	void Start () {
@@ -60,12 +64,25 @@ public class GameController : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKey("joystick button 2")) {
 			QuitGame ();
 		}
-		if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
-			waitingRestart = false;
-//			player1.SetActive (true);
-//			player2.SetActive (true);
-			pc1.enabled=true;
-			pc2.enabled = true;
+        if (waitingRestart == true) {
+            timeSinceGameEnded +=Time.deltaTime;
+            if (timeSinceGameEnded > cooldownBetwweenGames) {
+                if (1 == playerLost)
+                {
+                    GameObject.FindGameObjectWithTag("Placar").GetComponent<Placar>().P2Victory();
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("Placar").GetComponent<Placar>().P1Victory();
+                }
+                timeSinceGameEnded = 0;
+                waitingRestart = false;
+                //			player1.SetActive (true);
+                //			player2.SetActive (true);
+                pc1.enabled = true;
+                pc2.enabled = false;
+                fakeTM.Restart();
+            }
 		}
 	}
 
@@ -94,19 +111,15 @@ public class GameController : MonoBehaviour {
 		#endif
 	}
 
-	public void GameEnded (int playerLost){
+	public void GameEnded (int loser){
 		timeWhenGameEnded = Time.time;
-		fakeTM.Restart ();
 		waitingRestart = true;
+        timeSinceGameEnded = 0;
 //		player1.SetActive (false);
 //		player2.SetActive (false);
 		pc1.enabled = false;
 		pc2.enabled = false;
-		if (1 == playerLost) {
-			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P2Victory ();
-		} else {
-			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P1Victory ();
-		}
+        playerLost = loser;
 	}
 
 	public void ResetPlayersPositions(){

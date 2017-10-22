@@ -11,16 +11,23 @@ public class Vida : MonoBehaviour {
 		
 	}
 
-	public void TakeDamage(int damage){
-		vida -= damage;
-		if (0 >= vida) {
-			vida = 0;
-			if (!isPlayer) {
-				Destroy (gameObject);
-			} else {
-				GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<GameController> ().GameEnded (gameObject.GetComponent<PlayerInput>().pNumber);
-			}
-		}
+	public bool TakeDamage(int damage){
+        vida -= damage;
+        if (0 >= vida)
+        {
+            vida = 0;
+            if (!isPlayer)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameController>().GameEnded(gameObject.GetComponent<PlayerInput>().pNumber);
+            }
+            return true;
+        }
+        else return false;
+        
 	}
 	
 	// Update is called once per frame
