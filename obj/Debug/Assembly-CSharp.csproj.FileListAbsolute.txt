@@ -1,1 +1,0 @@
-C:\Git\BomberJam\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

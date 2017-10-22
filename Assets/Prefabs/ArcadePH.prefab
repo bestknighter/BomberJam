@@ -133,6 +133,7 @@ MonoBehaviour:
   limits: 3.5
   speed: 0.3
   rb2d: {fileID: 50567648298921304}
+  damageToPlayer: 500
 --- !u!114 &114745691257368082
 MonoBehaviour:
   m_ObjectHideFlags: 1

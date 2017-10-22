@@ -107,26 +107,33 @@ public class FakeTileMap : MonoBehaviour {
 	}
 
 	void SpawnMovable(GameObject go, int begin, int end, List<GameObject> list){
-		int skip = 0; // flag para pular o spawn do obstáculo
+//		int skip = 0; // flag para pular o spawn do obstáculo
 		for (int i = begin; i < end; i++) {
 			int x = indexes[i] % (num_verticalsquares-2)+1;
 			int y = indexes[i] / (num_verticalsquares-2)+1;
-			for (int j = 0; j < fixedIndexes.Length; j++) {
-				if (  (x*9+y) == fixedIndexes [j] || indexes[i] == fixedIndexes[j]) {
-					skip = 1;
-				}
-			}
 
-			if (skip == 0) {
 				Vector2 spawnPos = new Vector2 (x * square_width + xOffset + square_width / 2, y * square_height + square_height / 2);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint (new Vector3 (spawnPos.x, spawnPos.y, 0f));
 				worldPos.z = -2;
-				list.Add( GameObject.Instantiate (go, worldPos, Quaternion.identity) );
-			} else {
-				skip = 0;
+				bool jaTem = false;
+				foreach (GameObject gameO in colunas) {
+				if(gameO.transform.position == worldPos){
+						jaTem=true;
+						break;
+					}
+				}
+			foreach (GameObject gameO in cadeiras) {
+				if(gameO.transform.position == worldPos){
+					jaTem=true;
+					break;
+				}
 			}
-
-		}		
+				if(!jaTem){
+					list.Add( GameObject.Instantiate (go, worldPos, Quaternion.identity) );
+				}
+				else{
+					end++;
+				}
+		}
 	}
-
 }

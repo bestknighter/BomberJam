@@ -5,6 +5,12 @@ public class PlayerInput : MonoBehaviour {
 	[SerializeField, Range(1.0f, 2.0f)]
 	private int PlayerNumber = 1;
 
+	public int pNumber{
+		get{ 
+			return PlayerNumber;
+		}
+	}
+
 	public MoveDirection DesiredDirection {
 		get { return m_Dir1; }
 		set { m_Dir1 = value; }

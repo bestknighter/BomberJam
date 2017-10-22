@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour {
 
 	public float cooldownBetwweenGames;
 	private float timeWhenGameEnded;
+	private bool waitingRestart = false;
 
 	public FakeTileMap fakeTM;
 
@@ -56,8 +57,10 @@ public class GameController : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
 			QuitGame ();
-		} else if (timeWhenGameEnded + cooldownBetwweenGames < Time.time) {
-//			SceneManager.LoadScene (0);
+		} else if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
+			waitingRestart = false;
+			player1.SetActive (true);
+			player2.SetActive (true);
 		}
 	}
 
@@ -90,6 +93,9 @@ public class GameController : MonoBehaviour {
 		timeWhenGameEnded = Time.time;
 		player1.transform.position = p1InitialPos;
 		player2.transform.position = p2InitialPos;
-
+		fakeTM.Restart ();
+		waitingRestart = true;
+		player1.SetActive (false);
+		player2.SetActive (false);
 	}
 }

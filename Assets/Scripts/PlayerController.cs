@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour {
 	public float attackColiderDistance;
 	public bool isStun = false; 
 
+	public bool beingkicked;
+	private float timestampKick;
+	public float kickDuration;
+	public float kickSpeed;
+	private MoveDirection kickDirection;
+
 	private MoveDirection mv;
 
 	public GameObject colliding;
@@ -34,7 +40,26 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-
+		if (beingkicked) {
+			if (MoveDirection.UP == kickDirection) {
+//				rb2d.position += new Vector2 (0f, kickSpeed);
+				rb2d.velocity= new Vector2(0f, kickSpeed);
+			} else if (MoveDirection.DOWN == kickDirection) {
+//				rb2d.position += new Vector2 (0f, -kickSpeed);
+				rb2d.velocity= new Vector2(0f, -kickSpeed);
+			}else if (MoveDirection.LEFT == kickDirection) {
+//				rb2d.position += new Vector2 (-kickSpeed, 0f);
+				rb2d.velocity= new Vector2(-kickSpeed, 0f);
+			}else if (MoveDirection.RIGHT == kickDirection) {
+//				rb2d.position += new Vector2 (kickSpeed, 0f);
+				rb2d.velocity= new Vector2(kickSpeed, 0f);
+			}
+			if (timestampKick + kickDuration < Time.time) {
+				beingkicked = false;
+				rb2d.velocity = new Vector2(0f, 0f);
+			}
+			return;
+		}
 		// Descobrir se é possível fazer DesiredDirection
 			// Se sim, coloca em ChosenDirection
 			// Se não, descobre se é possível fazer OptionalDirection
@@ -83,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 				//chute
 				if (null != colliding) {
 					if (colliding.tag == "Player") {
-						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
+						colliding.GetComponent<PlayerController>().GetKicked(mv);
 					} else if (colliding.tag == "Arcade") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
 					} else if (colliding.tag == "Destrutivel") {
@@ -99,6 +124,18 @@ public class PlayerController : MonoBehaviour {
 	}
 	void OnTriggerExit2D(){
 		colliding = null;
+	}
+
+	public void GetKicked(MoveDirection d){
+		beingkicked = true;
+		timestampKick = Time.time;
+		kickDirection = d;
+	}
+
+	public void OnCollisionEnter2D(Collision2D coll){
+		if(coll.gameObject.tag == "Arcade" && beingkicked){
+			gameObject.GetComponent<Vida> ().TakeDamage (500);
+		}
 	}
 
 }
