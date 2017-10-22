@@ -17,11 +17,13 @@ public class GameController : MonoBehaviour {
 	public PlayerController pc1;
 	public PlayerController pc2;
 
+	public SpriteRenderer over;
+	public Sprite ShownOverlay;
+	public Sprite HiddenOverlay;
+
 	public FakeTileMap ftm;
 
 	public Animator start;
-
-	public SpriteRenderer inGameOverlay;
 
 	private static GameController instance;
 	private bool started;
@@ -63,7 +65,7 @@ public class GameController : MonoBehaviour {
 		instance.c.gameObject.SetActive (false);
 		instance.pc1.enabled = true;
 		instance.pc2.enabled = true;
-		instance.inGameOverlay.enabled = true;
+		instance.over.sprite = instance.HiddenOverlay;
 	}
 
 	public static void ShowStartScreen() {
@@ -72,8 +74,8 @@ public class GameController : MonoBehaviour {
 		instance.pc2.enabled = false;
 		instance.pr1.Ready = false;
 		instance.pr2.Ready = false;
+		instance.over.sprite = instance.ShownOverlay;
 		instance.ftm.Start();
-		instance.inGameOverlay.enabled = false;
 	}
 
 	public void QuitGame() {
