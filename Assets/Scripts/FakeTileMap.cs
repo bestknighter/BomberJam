@@ -30,6 +30,8 @@ public class FakeTileMap : MonoBehaviour {
 	public List<GameObject> flippers;
 	public List<GameObject> colunas;
 
+	public GameController gameController;
+
 	public void Restart(){
 		for (int i = 0; i < cadeiras.Count; i++) {
 			GameObject.Destroy (cadeiras [i]);
@@ -98,7 +100,7 @@ public class FakeTileMap : MonoBehaviour {
 		SpawnMovable (arcade, numObstaculosDestrutivel, numObstaculosDestrutivel+numArcades, flippers);
 		Debug.Log ("indexes lenght= " + indexes.Length);
 			
-			
+		gameController.ResetPlayersPositions ();
 	}
 	
 	// Update is called once per frame

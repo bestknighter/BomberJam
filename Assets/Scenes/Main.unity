@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8166743635ed2b478530b8293d5799a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 5
+  timeLeft: 0.7
 --- !u!114 &258515472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8166743635ed2b478530b8293d5799a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 5
+  timeLeft: 0.7
 --- !u!114 &378513772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2392,6 +2392,7 @@ MonoBehaviour:
   cadeiras: []
   flippers: []
   colunas: []
+  gameController: {fileID: 1684523712}
 --- !u!212 &2036329710
 SpriteRenderer:
   m_ObjectHideFlags: 0
