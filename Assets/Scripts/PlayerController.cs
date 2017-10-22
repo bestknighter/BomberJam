@@ -91,14 +91,18 @@ public class PlayerController : MonoBehaviour {
 				mv = MoveDirection.LEFT;
 				rb2d.velocity = new Vector2 (-moveSpeed, 0f);
 				attackCollider.offset = new Vector2 (-attackColiderDistance, 0f);
+				//Linha de Reflexão do personagem
+				filho.transform.localScale = (new Vector3(0.055f, 0.055f, 0.055f));
+				/////
 				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.RIGHT:
 				mv = MoveDirection.RIGHT;
 				rb2d.velocity = new Vector2 (moveSpeed, 0f);
 				attackCollider.offset = new Vector2 (attackColiderDistance, 0f);
-				filho.transform.localScale.Scale(new Vector3(-1, 0f, 0f));
-//				filho.transform.
+				//Linha de Reflexão do personagem
+				filho.transform.localScale = (new Vector3(-0.055f, 0.055f, 0.055f));
+				/////
 				anim.SetBool ("Walk", true);
 				break;
 			case MoveDirection.NOTHING:
