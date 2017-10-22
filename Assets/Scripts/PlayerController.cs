@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     public const int PUNCH = 1;
     public const int WALK = 2;
     public const int EXPLODE = 3;
+    public const int MISS = 4;
+    public float audioTimer;
 
     public bool beingkicked;
 	private float timestampKick;
@@ -123,9 +125,9 @@ public class PlayerController : MonoBehaviour {
 			}
 
             AudioSource temp = ((AudioSource)gameObject.GetComponent<AudioSource>());
-            if (anim.GetBool("Walk"))
+            if (anim.GetBool("Walk") && colliding == null)
             {
-                if (!temp.isPlaying || temp.clip.name != aClip[WALK].name)
+                if (!temp.isPlaying)
                 {
                     temp.clip = aClip[WALK];
                     Debug.Log(temp.clip.name);
@@ -145,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 				//soco
 				anim.SetTrigger("Punch");
 				if (null != colliding) {
-                     if (!temp.isPlaying || temp.clip.name != aClip[PUNCH].name)
+                    if (!temp.isPlaying || temp.clip.name != aClip[PUNCH].name)
                     {
                         temp.clip = aClip[PUNCH];
                         temp.Play();
@@ -156,7 +158,13 @@ public class PlayerController : MonoBehaviour {
 						colliding.GetComponent<Stun> ().StunHit (attackDamage);
 						colliding.GetComponent<PlayerController> ().anim.SetTrigger ("Hit");
 					}
-				}
+                }
+                else
+                {
+                    temp.clip = aClip[MISS];
+                    temp.Play();
+
+                }
 
 			} else if (playerInput.BotaoB) {
 				//chute
@@ -169,12 +177,21 @@ public class PlayerController : MonoBehaviour {
                     }
                     if (colliding.tag == "Player") {
 						colliding.GetComponent<PlayerController>().GetKicked(mv);
-					} else if (colliding.tag == "Arcade") {
+                        colliding.GetComponent<PlayerController>().anim.SetTrigger("Hit");
+                    } else if (colliding.tag == "Arcade") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
 					} else if (colliding.tag == "Destrutivel") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
 					}
-				}
+                }
+                else
+                {
+                    if (!temp.isPlaying || temp.clip.name != aClip[MISS].name)
+                    {
+                        temp.clip = aClip[MISS];
+                        temp.Play();
+                    }
+                }
 			}
 		}
 	}
