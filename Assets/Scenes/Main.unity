@@ -890,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsTimeout: 10
   pi: {fileID: 258515464}
-  text: {fileID: 546845824}
+  text: {fileID: 779497317}
 --- !u!1 &676742939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsTimeout: 10
   pi: {fileID: 378513764}
-  text: {fileID: 779497317}
+  text: {fileID: 546845824}
 --- !u!1 &843502479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 1221197232}
   - component: {fileID: 1221197231}
   m_Layer: 0
-  m_Name: PersistGO
+  m_Name: Placar
   m_TagString: Placar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,8 +1300,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1Point: 0
   p2Point: 0
-  p1Score: {fileID: 0}
-  p2Score: {fileID: 0}
+  p1Score: {fileID: 676742942}
+  p2Score: {fileID: 533479993}
 --- !u!4 &1221197232
 Transform:
   m_ObjectHideFlags: 0
