@@ -10,9 +10,13 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 initialPosition;
 	public BoxCollider2D attackCollider;
 	public float attackColiderDistance;
-	public bool isStun = false; 
+	public bool isStun = false;
+    public const int KICK = 0;
+    public const int PUNCH = 1;
+    public const int WALK = 2;
+    public const int EXPLODE = 3;
 
-	public bool beingkicked;
+    public bool beingkicked;
 	private float timestampKick;
 	public float kickDuration;
 	public float kickSpeed;
@@ -28,9 +32,13 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private int attackDamage;
 
+    [SerializeField]
+    public AudioClip[] aClip;// = new AudioClip[4];
+
 	// Use this for initialization
 	void Awake () {
 		initialPosition = transform.position;
+        Debug.Log(aClip.Length);
 	}
 
 	void OnDisable() {
@@ -110,12 +118,35 @@ public class PlayerController : MonoBehaviour {
 				break;
 			}
 
+            AudioSource temp = ((AudioSource)gameObject.GetComponent<AudioSource>());
+            if (anim.GetBool("Walk"))
+            {
+                if (!temp.isPlaying || temp.clip.name != aClip[WALK].name)
+                {
+                    temp.clip = aClip[WALK];
+                    Debug.Log(temp.clip.name);
+                    temp.Play();
+                }
+                else
+                {
+                    Debug.Log("Camla fi, ta tocando a ultima");
+                }
+            }else if(!anim.GetBool("Walk") && temp.isPlaying && temp.clip.name == aClip[WALK].name)
+            {
+                temp.Stop();
+            }
+
 		
 			if (playerInput.BotaoA) {
 				//soco
 				anim.SetTrigger("Punch");
 				if (null != colliding) {
-					if (colliding.tag == "Destrutivel") {
+                     if (!temp.isPlaying || temp.clip.name != aClip[PUNCH].name)
+                    {
+                        temp.clip = aClip[PUNCH];
+                        temp.Play();
+                    }
+                    if (colliding.tag == "Destrutivel") {
 						colliding.GetComponent<Vida> ().TakeDamage (attackDamage);
 					} else if (colliding.tag == "Player") {
 						colliding.GetComponent<Stun> ().StunHit (attackDamage);
@@ -127,12 +158,15 @@ public class PlayerController : MonoBehaviour {
 				//chute
 				anim.SetTrigger("Kick");
 				if (null != colliding) {
-					((AudioSource) gameObject.GetComponent<AudioSource> ()).Play();
-					if (colliding.tag == "Player") {
+                    if (!temp.isPlaying || temp.clip.name != aClip[KICK].name)
+                    {
+                        temp.clip = aClip[KICK];
+                        temp.Play();
+                    }
+                    if (colliding.tag == "Player") {
 						colliding.GetComponent<PlayerController>().GetKicked(mv);
 					} else if (colliding.tag == "Arcade") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
-
 					} else if (colliding.tag == "Destrutivel") {
 						colliding.GetComponent<Arcade> ().StartMoving (mv);
 					}
