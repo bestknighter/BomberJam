@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198207647220046468}
   - component: {fileID: 199000235719388836}
   m_Layer: 0
-  m_Name: Smoke Arasta
+  m_Name: Smoke Arrasta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
