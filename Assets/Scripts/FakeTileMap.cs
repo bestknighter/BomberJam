@@ -24,11 +24,13 @@ public class FakeTileMap : MonoBehaviour {
 	private int square_height;
 
 	private int[] indexes;
-	private int[] fixedIndexes = { 10, 28, 46, 65, 31, 49, 61, 43, 34, 11, 14, 16 };
+	private int[] fixedIndexes = { 66,23,19,55,37,25,61,43,21,68,40 };
 
 	public List<GameObject> cadeiras;
 	public List<GameObject> flippers;
 	public List<GameObject> colunas;
+
+	public GameController gameController;
 
 	public void Restart(){
 		for (int i = 0; i < cadeiras.Count; i++) {
@@ -98,7 +100,7 @@ public class FakeTileMap : MonoBehaviour {
 		SpawnMovable (arcade, numObstaculosDestrutivel, numObstaculosDestrutivel+numArcades, flippers);
 		Debug.Log ("indexes lenght= " + indexes.Length);
 			
-			
+		gameController.ResetPlayersPositions ();
 	}
 	
 	// Update is called once per frame

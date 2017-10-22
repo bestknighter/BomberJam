@@ -62,8 +62,10 @@ public class GameController : MonoBehaviour {
 		}
 		if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
 			waitingRestart = false;
-			player1.SetActive (true);
-			player2.SetActive (true);
+//			player1.SetActive (true);
+//			player2.SetActive (true);
+			pc1.enabled=true;
+			pc2.enabled = false;
 		}
 	}
 
@@ -94,16 +96,21 @@ public class GameController : MonoBehaviour {
 
 	public void GameEnded (int playerLost){
 		timeWhenGameEnded = Time.time;
-		player1.transform.position = p1InitialPos;
-		player2.transform.position = p2InitialPos;
 		fakeTM.Restart ();
 		waitingRestart = true;
-		player1.SetActive (false);
-		player2.SetActive (false);
+//		player1.SetActive (false);
+//		player2.SetActive (false);
+		pc1.enabled=false;
+		pc2.enabled = false;
 		if (1 == playerLost) {
 			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P2Victory ();
 		} else {
 			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P1Victory ();
 		}
+	}
+
+	public void ResetPlayersPositions(){
+		player1.transform.position = p1InitialPos;
+		player2.transform.position = p2InitialPos;
 	}
 }
