@@ -53,11 +53,11 @@ public class GameController : MonoBehaviour {
 
 				started = true;
 			}
-			if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (Input.GetKeyDown (KeyCode.Escape) ||  Input.GetKey("joystick button 2")) {
 				ShowStartScreen ();
 				started = false;
 			}
-		} else if (Input.GetKeyDown (KeyCode.Escape)) {
+		} else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKey("joystick button 2")) {
 			QuitGame ();
 		}
 		if (timeWhenGameEnded + cooldownBetwweenGames < Time.time && waitingRestart) {
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour {
 //			player1.SetActive (true);
 //			player2.SetActive (true);
 			pc1.enabled=true;
-			pc2.enabled = false;
+			pc2.enabled = true;
 		}
 	}
 
@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour {
 		waitingRestart = true;
 //		player1.SetActive (false);
 //		player2.SetActive (false);
-		pc1.enabled=false;
+		pc1.enabled = false;
 		pc2.enabled = false;
 		if (1 == playerLost) {
 			GameObject.FindGameObjectWithTag ("Placar").GetComponent<Placar> ().P2Victory ();
