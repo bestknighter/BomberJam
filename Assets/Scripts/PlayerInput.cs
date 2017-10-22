@@ -64,17 +64,17 @@ public class PlayerInput : MonoBehaviour {
 		float h = Input.GetAxis ("HorizontalP" + PlayerNumber);
 		float v = Input.GetAxis ("VerticalP" + PlayerNumber);
 
-		if (h > 0.0f) {
+		if (h > 0.8) {
 			opt1 = MoveDirection.RIGHT;
-		} else if (h < 0.0f) {
+		} else if (h < -0.8f) {
 			opt1 = MoveDirection.LEFT;
 		} else {
 			opt1 = MoveDirection.NOTHING;
 		}
 
-		if (v > 0.0f) {
+		if (v > 0.8f) {
 			opt2 = MoveDirection.UP;
-		} else if (v < 0.0f) {
+		} else if (v < -0.8f) {
 			opt2 = MoveDirection.DOWN;
 		} else {
 			opt2 = MoveDirection.NOTHING;
