@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour {
                 //			player1.SetActive (true);
                 //			player2.SetActive (true);
                 pc1.enabled = true;
-                pc2.enabled = false;
+                pc2.enabled = true;
                 fakeTM.Restart();
             }
 		}

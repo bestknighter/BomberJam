@@ -72,6 +72,7 @@ public class FakeTileMap : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
+		Screen.SetResolution(1920, 1080, true);
 		if (numObstaculos > numMaxObstaculos) {
 			Debug.LogError ("Proibido numObstaculos ser maior que numMaxObstaculos");
 		}
@@ -91,6 +92,9 @@ public class FakeTileMap : MonoBehaviour {
 			int x = fixedIndexes[i] % (num_verticalsquares);
 			int y = fixedIndexes[i] / (num_verticalsquares);
 			Vector2 spawnPos = new Vector2 (x * square_width+xOffset + square_width/2, y * square_height + square_height/2);
+			Debug.Log(Screen.currentResolution);
+			spawnPos.x= spawnPos.x /1080 * Screen.currentResolution.width;
+			spawnPos.y= spawnPos.y /1920 * Screen.currentResolution.height;
 			Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 			worldPos.z = -2;
 			colunas.Add(GameObject.Instantiate (obstaculo, worldPos, Quaternion.identity) );
@@ -115,6 +119,8 @@ public class FakeTileMap : MonoBehaviour {
 			int y = indexes[i] / (num_verticalsquares-2)+1;
 
 				Vector2 spawnPos = new Vector2 (x * square_width + xOffset + square_width / 2, y * square_height + square_height / 2);
+				spawnPos.x= spawnPos.x /1920 * Screen.currentResolution.width;
+				spawnPos.y= spawnPos.y /1080 * Screen.currentResolution.height;
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint (new Vector3 (spawnPos.x, spawnPos.y, 0f));
 				worldPos.z = -2;
 				bool jaTem = false;
