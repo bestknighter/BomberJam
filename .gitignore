@@ -3,3 +3,4 @@ Temp/*
 Assembly-CSharp.csproj
 BomberJam.userprefs
 .vs/
+Build/
